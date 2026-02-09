@@ -11,8 +11,8 @@ const en: Translations = {
   hero: {
     eyebrow: 'ESTABLISHED 1994 · YOGYAKARTA',
     heading: 'Crafting Timeless Gifts\nfor Your Sacred Day',
-    subtext: 'Trusted by the Yogyakarta Royal Palace and discerning families across generations.',
-    cta: 'Begin Your Consultation',
+    subtext: 'Quietly present in Yogyakarta\'s most cherished celebrations for over three decades.',
+    cta: 'Start a Conversation',
   },
   about: {
     eyebrow: 'OUR STORY',
@@ -52,13 +52,11 @@ const en: Translations = {
   contact: {
     eyebrow: 'GET IN TOUCH',
     heading: 'Let\'s Create Something Beautiful',
-    subtext: 'Visit our studio or reach out to begin your consultation. We\'d love to hear about your celebration.',
-    address: 'Address',
-    whatsapp: 'WhatsApp',
-    instagram: 'Instagram',
-    hours: 'Hours',
-    hoursValue: 'Monday — Saturday, 09:00 — 17:00 WIB',
-    cta: 'Chat on WhatsApp',
+    subtext: 'Visit our studio or reach out to begin your consultation.',
+    visitLabel: 'Visit',
+    connectLabel: 'Connect',
+    hoursLabel: 'Hours',
+    cta: 'Start a conversation',
   },
   footer: {
     tagline: 'Crafting Timeless Gifts Since 1994',
@@ -75,8 +73,8 @@ const id: Translations = {
   hero: {
     eyebrow: 'BERDIRI SEJAK 1994 · YOGYAKARTA',
     heading: 'Merangkai Persembahan Abadi\nuntuk Hari Istimewa Anda',
-    subtext: 'Dipercaya oleh Kraton Yogyakarta dan keluarga-keluarga pilihan lintas generasi.',
-    cta: 'Mulai Konsultasi',
+    subtext: 'Dengan rendah hati hadir dalam momen-momen berharga di Yogyakarta selama lebih dari tiga dekade.',
+    cta: 'Mulai Percakapan',
   },
   about: {
     eyebrow: 'TENTANG KAMI',
@@ -116,13 +114,11 @@ const id: Translations = {
   contact: {
     eyebrow: 'HUBUNGI KAMI',
     heading: 'Mari Ciptakan Sesuatu yang Indah',
-    subtext: 'Kunjungi studio kami atau hubungi kami untuk memulai konsultasi. Kami ingin mendengar tentang perayaan Anda.',
-    address: 'Alamat',
-    whatsapp: 'WhatsApp',
-    instagram: 'Instagram',
-    hours: 'Jam Operasional',
-    hoursValue: 'Senin — Sabtu, 09.00 — 17.00 WIB',
-    cta: 'Chat via WhatsApp',
+    subtext: 'Kunjungi studio kami atau hubungi kami untuk memulai konsultasi.',
+    visitLabel: 'Kunjungi',
+    connectLabel: 'Hubungi',
+    hoursLabel: 'Jam Buka',
+    cta: 'Mulai percakapan',
   },
   footer: {
     tagline: 'Merangkai Persembahan Abadi Sejak 1994',

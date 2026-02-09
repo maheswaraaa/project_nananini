@@ -1,164 +1,160 @@
-import { motion } from 'framer-motion';
-import { MapPin, Phone, Instagram, Clock } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { useEffect, useRef, useState } from 'react';
 
-const WA_NUMBER = '6281328038083';
+const Contact = () => {
+  const { t, lang } = useLanguage();
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
-export default function Contact() {
-  const { lang, t } = useLanguage();
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.15 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
-  const waMsg = lang === 'en'
-    ? encodeURIComponent("Hello Nananini Wedding, I'm interested in your wedding gift services. Could we arrange a consultation?")
-    : encodeURIComponent('Halo Nananini Wedding, saya tertarik dengan layanan hadiah pernikahan Anda. Bisakah kita mengatur konsultasi?');
-
-  const contactItems = [
-    {
-      icon: MapPin,
-      label: t('contact.address'),
-      value: 'Jl. Namburan Lor 54\nKec. Kraton, Kel. Panembahan\nYogyakarta, Indonesia',
-      href: 'https://maps.google.com/?q=Jl.+Namburan+Lor+54+Yogyakarta',
-    },
-    {
-      icon: Phone,
-      label: t('contact.whatsapp'),
-      value: '+62 813-2803-8083',
-      href: `https://wa.me/${WA_NUMBER}?text=${waMsg}`,
-    },
-    {
-      icon: Instagram,
-      label: t('contact.instagram'),
-      value: '@nananini_wedding',
-      href: 'https://www.instagram.com/nananini_wedding/',
-    },
-    {
-      icon: Clock,
-      label: t('contact.hours'),
-      value: t('contact.hoursValue'),
-      href: undefined,
-    },
-  ];
+  const waMessage = lang === 'en'
+    ? "Hello Nananini Wedding, I'm interested in your wedding gift services. Could we arrange a consultation?"
+    : "Halo Nananini Wedding, saya tertarik dengan layanan hadiah pernikahan Anda. Bisakah kita mengatur konsultasi?";
+  const waLink = `https://wa.me/6281328038083?text=${encodeURIComponent(waMessage)}`;
 
   return (
-    <section id="contact" className="bg-white py-20 md:py-28 lg:py-32">
-      <div className="mx-auto max-w-[1200px] px-5 md:px-10 lg:px-20">
-        {/* Header */}
-        <div className="text-center mb-14 md:mb-16">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: '-20%' }}
-            transition={{ duration: 0.6 }}
-            className="font-body text-[11px] md:text-xs font-medium uppercase tracking-[0.2em] text-jade mb-4"
-          >
-            {t('contact.eyebrow')}
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-20%' }}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] as const }}
-            className="font-heading text-[28px] md:text-[36px] lg:text-[40px] font-normal leading-[1.15] text-jade-deep"
-          >
-            {t('contact.heading')}
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-20%' }}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] as const }}
-            className="font-body text-[15px] md:text-base font-light text-soft-gray mt-4 max-w-lg mx-auto"
-          >
-            {t('contact.subtext')}
-          </motion.p>
-        </div>
+    <section
+      id="contact"
+      ref={sectionRef}
+      className="bg-white"
+    >
+      <div className="max-w-[1200px] mx-auto px-5 md:px-10 lg:px-16 py-20 md:py-28">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-0">
 
-        {/* Content */}
-        <div className="grid md:grid-cols-5 gap-10 md:gap-12 lg:gap-16">
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-10%' }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as const }}
-            className="md:col-span-3 space-y-8"
+          {/* Left Column — Header */}
+          <div
+            className={`lg:border-r lg:border-[#5B7F63]/10 lg:pr-12 flex flex-col justify-center transition-all duration-700 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            }`}
           >
-            {contactItems.map((item, i) => (
-              <div key={i} className="flex gap-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-jade/10 flex items-center justify-center mt-0.5">
-                  <item.icon className="w-[18px] h-[18px] text-jade" strokeWidth={1.5} />
-                </div>
-                <div>
-                  <p className="font-body text-[11px] font-medium uppercase tracking-[0.15em] text-soft-gray mb-1">
-                    {item.label}
-                  </p>
-                  {item.href ? (
-                    <a
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-body text-[15px] text-charcoal hover:text-jade transition-colors duration-200 whitespace-pre-line leading-relaxed"
-                    >
-                      {item.value}
-                    </a>
-                  ) : (
-                    <p className="font-body text-[15px] text-charcoal whitespace-pre-line leading-relaxed">
-                      {item.value}
-                    </p>
-                  )}
-                </div>
-              </div>
-            ))}
+            <p className="font-body text-[11px] font-medium uppercase tracking-[0.15em] text-[#A8BFA2] mb-4">
+              {t('contact.eyebrow')}
+            </p>
+            <h2 className="font-heading text-[28px] md:text-[34px] font-semibold text-[#3D5A44] leading-[1.2] mb-5">
+              {t('contact.heading')}
+            </h2>
+            <p className="font-body text-[14px] text-[#7A7A7A] font-light leading-relaxed mb-8">
+              {t('contact.subtext')}
+            </p>
+            <a
+              href={waLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 font-body text-[13px] font-medium text-[#5B7F63] hover:text-[#3D5A44] transition-colors duration-300"
+            >
+              <span className="border-b border-[#5B7F63]/30 group-hover:border-[#3D5A44]/50 pb-0.5 transition-colors duration-300">
+                {t('contact.cta')}
+              </span>
+              <span className="transform group-hover:translate-x-1 transition-transform duration-300">→</span>
+            </a>
+          </div>
 
-            {/* CTA */}
-            <div className="pt-4">
+          {/* Middle Column — Contact Info */}
+          <div
+            className={`lg:border-r lg:border-[#5B7F63]/10 lg:px-12 flex flex-col justify-center transition-all duration-700 delay-200 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            }`}
+          >
+            {/* Address */}
+            <div className="mb-6">
+              <p className="font-body text-[10px] font-medium uppercase tracking-[0.15em] text-[#A8BFA2] mb-2">
+                {lang === 'en' ? 'ADDRESS' : 'ALAMAT'}
+              </p>
               <a
-                href={`https://wa.me/${WA_NUMBER}?text=${waMsg}`}
+                href="https://maps.google.com/?q=Jl.+Namburan+Lor+54+Kraton+Yogyakarta"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-jade text-white font-body text-[13px] md:text-sm font-medium uppercase tracking-[0.12em] px-10 py-4 rounded-sm hover:bg-jade-deep active:scale-[0.97] transition-all duration-200"
+                className="font-body text-[13px] text-[#2C2C2C] leading-relaxed hover:text-[#5B7F63] transition-colors duration-300 block"
               >
-                {t('contact.cta')}
+                Jl. Namburan Lor 54<br />
+                Kec. Kraton, Kel. Panembahan<br />
+                Yogyakarta, Indonesia
               </a>
             </div>
-          </motion.div>
 
-          {/* Map */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-10%' }}
-            transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] as const }}
-            className="md:col-span-2"
-          >
-            <div className="w-full aspect-square md:aspect-[3/4] bg-linen rounded-sm overflow-hidden relative">
-              {/* Static map placeholder */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-sage/10 to-linen p-6">
-                <svg viewBox="0 0 80 80" className="w-16 h-16 text-sage/50 mb-4" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <circle cx="40" cy="32" r="10" />
-                  <path d="M40 42 C40 42 56 28 56 20 C56 11.2 48.8 4 40 4 C31.2 4 24 11.2 24 20 C24 28 40 42 40 42Z" />
-                  <rect x="8" y="52" width="64" height="24" rx="2" />
-                  <line x1="8" y1="60" x2="72" y2="60" />
-                  <line x1="8" y1="68" x2="72" y2="68" />
-                  <line x1="28" y1="52" x2="28" y2="76" />
-                  <line x1="52" y1="52" x2="52" y2="76" />
-                </svg>
-                <p className="text-xs font-body text-soft-gray/60 text-center leading-relaxed">
-                  Jl. Namburan Lor 54<br />
-                  Kraton, Yogyakarta
+            {/* Divider */}
+            <div className="w-full h-px bg-[#5B7F63]/10 mb-6" />
+
+            {/* WhatsApp + Instagram side by side */}
+            <div className="grid grid-cols-2 gap-6 mb-6">
+              <div>
+                <p className="font-body text-[10px] font-medium uppercase tracking-[0.15em] text-[#A8BFA2] mb-2">
+                  WhatsApp
                 </p>
                 <a
-                  href="https://maps.google.com/?q=Jl.+Namburan+Lor+54+Yogyakarta"
+                  href={waLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 text-[11px] font-body font-medium text-jade hover:text-jade-deep uppercase tracking-wider transition-colors"
+                  className="font-body text-[13px] text-[#2C2C2C] hover:text-[#5B7F63] transition-colors duration-300"
                 >
-                  Open in Google Maps →
+                  +62 813-2803-8083
+                </a>
+              </div>
+              <div>
+                <p className="font-body text-[10px] font-medium uppercase tracking-[0.15em] text-[#A8BFA2] mb-2">
+                  Instagram
+                </p>
+                <a
+                  href="https://www.instagram.com/nananini_wedding/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-body text-[13px] text-[#2C2C2C] hover:text-[#5B7F63] transition-colors duration-300"
+                >
+                  @nananini_wedding
                 </a>
               </div>
             </div>
-          </motion.div>
+
+            {/* Divider */}
+            <div className="w-full h-px bg-[#5B7F63]/10 mb-6" />
+
+            {/* Appointment note */}
+            <p className="font-body text-[12px] text-[#7A7A7A] italic leading-relaxed">
+              {lang === 'en'
+                ? 'Visits are by appointment only — please reach out via WhatsApp to schedule.'
+                : 'Kunjungan hanya dengan perjanjian — silakan hubungi via WhatsApp untuk menjadwalkan.'}
+            </p>
+          </div>
+
+          {/* Right Column — Map */}
+          <div
+            className={`lg:pl-12 flex items-center transition-all duration-700 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            }`}
+            style={{ transitionDelay: '400ms' }}
+          >
+            <div className="w-full h-full min-h-[240px] lg:min-h-[280px] rounded overflow-hidden">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.8!2d110.3588!3d-7.8052!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a5787bd5b6bc5%3A0x21723fd4b696e5c0!2sJl.%20Namburan%20Lor%2C%20Panembahan%2C%20Kec.%20Kraton%2C%20Kota%20Yogyakarta!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid"
+                width="100%"
+                height="100%"
+                style={{ border: 0, minHeight: '240px' }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Nananini Wedding Location"
+                className="w-full h-full"
+              />
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default Contact;

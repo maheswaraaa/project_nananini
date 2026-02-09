@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+import { ArrowRight, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 const WA_NUMBER = '6281328038083';
@@ -42,13 +42,13 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="font-body text-[15px] md:text-[17px] font-light text-soft-gray mt-6 max-w-[520px] mx-auto leading-relaxed"
+          className="font-body text-[15px] md:text-[17px] font-light text-soft-gray mt-6 max-w-[480px] mx-auto leading-relaxed"
         >
           {t('hero.subtext')}
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="mt-10"
@@ -57,9 +57,13 @@ export default function Hero() {
             href={`https://wa.me/${WA_NUMBER}?text=${waMsg}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-jade text-white font-body text-[13px] md:text-sm font-medium uppercase tracking-[0.12em] px-10 py-4 rounded-sm hover:bg-jade-deep active:scale-[0.97] transition-all duration-200"
+            className="group inline-flex items-center gap-2 font-body text-[13px] font-medium uppercase tracking-[0.14em] text-jade hover:text-jade-deep transition-colors duration-300"
           >
-            {t('hero.cta')}
+            <span className="relative">
+              {t('hero.cta')}
+              <span className="absolute left-0 -bottom-[3px] w-full h-px bg-jade/30 group-hover:bg-jade-deep/50 transition-colors duration-300" />
+            </span>
+            <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
           </a>
         </motion.div>
       </div>
