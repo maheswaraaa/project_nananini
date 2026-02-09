@@ -11,7 +11,7 @@ const en: Translations = {
   hero: {
     eyebrow: 'ESTABLISHED 1994 · YOGYAKARTA',
     heading: 'Crafting Timeless Gifts\nfor Your Sacred Day',
-    subtext: 'Quietly present in Yogyakarta\'s most cherished celebrations for over three decades.',
+    subtext: 'Always present in Yogyakarta\'s most cherished celebrations for over three decades.',
     cta: 'Start a Conversation',
   },
   about: {
@@ -151,7 +151,7 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType>({
   lang: 'id',
-  setLang: () => {},
+  setLang: () => { },
   t: (key: string) => key,
 });
 

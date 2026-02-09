@@ -36,9 +36,8 @@ const Contact = () => {
 
           {/* Left Column — Header */}
           <div
-            className={`lg:border-r lg:border-[#5B7F63]/10 lg:pr-12 flex flex-col justify-center transition-all duration-700 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-            }`}
+            className={`lg:border-r lg:border-[#5B7F63]/10 lg:pr-12 flex flex-col justify-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              }`}
           >
             <p className="font-body text-[11px] font-medium uppercase tracking-[0.15em] text-[#A8BFA2] mb-4">
               {t('contact.eyebrow')}
@@ -64,9 +63,8 @@ const Contact = () => {
 
           {/* Middle Column — Contact Info */}
           <div
-            className={`lg:border-r lg:border-[#5B7F63]/10 lg:px-12 flex flex-col justify-center transition-all duration-700 delay-200 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-            }`}
+            className={`lg:border-r lg:border-[#5B7F63]/10 lg:px-12 flex flex-col justify-center transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              }`}
           >
             {/* Address */}
             <div className="mb-6">
@@ -98,9 +96,12 @@ const Contact = () => {
                   href={waLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-body text-[13px] text-[#2C2C2C] hover:text-[#5B7F63] transition-colors duration-300"
+                  className="group inline-flex items-center gap-1.5 font-body text-[13px] text-[#2C2C2C] hover:text-[#5B7F63] transition-colors duration-300"
                 >
-                  +62 813-2803-8083
+                  <span className="border-b border-[#5B7F63]/30 group-hover:border-[#5B7F63]/60 pb-0.5 transition-colors duration-300">
+                    Chat with us
+                  </span>
+                  <span className="transform group-hover:translate-x-0.5 transition-transform duration-300">→</span>
                 </a>
               </div>
               <div>
@@ -131,9 +132,8 @@ const Contact = () => {
 
           {/* Right Column — Map */}
           <div
-            className={`lg:pl-12 flex items-center transition-all duration-700 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-            }`}
+            className={`lg:pl-12 flex items-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              }`}
             style={{ transitionDelay: '400ms' }}
           >
             <div className="w-full h-full min-h-[240px] lg:min-h-[280px] rounded overflow-hidden">
