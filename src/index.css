@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  --color-jade: #5B7F63;
+  --color-jade-deep: #3D5A44;
+  --color-sage: #A8BFA2;
+  --color-ivory: #FAF8F5;
+  --color-linen: #F3EDE7;
+  --color-charcoal: #2C2C2C;
+  --color-soft-gray: #7A7A7A;
+  --color-gold: #C9A84C;
+  --color-whatsapp: #25D366;
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-charcoal);
+  background-color: var(--color-ivory);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ivory);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-sage);
+  border-radius: 3px;
+}
+
+/* Ken Burns */
+@keyframes kenBurns {
+  0% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.05) translate(-1%, -1%); }
+  100% { transform: scale(1) translate(0, 0); }
+}
+.ken-burns {
+  animation: kenBurns 20s ease-in-out infinite;
+}
+
+/* Pulse for WhatsApp */
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+.pulse-ring::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: inherit;
+  animation: pulse-ring 2s ease-out infinite;
+  animation-delay: 5s;
+  animation-iteration-count: 1;
+}
+
+/* Loading screen */
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .ken-burns { animation: none; }
+  .pulse-ring::before { animation: none; }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
