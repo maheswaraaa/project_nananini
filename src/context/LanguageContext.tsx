@@ -53,7 +53,7 @@ interface LanguageContextType {
 }
 
 const LanguageContext = createContext<LanguageContextType>({
-  lang: 'id',
+  lang: 'en',
   setLang: () => { },
   t: (key: string) => key,
 });
@@ -64,7 +64,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       const stored = localStorage.getItem('nananini-lang');
       if (stored === 'en' || stored === 'id') return stored;
     }
-    return 'id';
+    return 'en';
   });
 
   const setLang = (newLang: Lang) => {

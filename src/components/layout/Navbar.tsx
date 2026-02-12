@@ -6,7 +6,7 @@ import Logo from '@/components/ui/Logo';
 const sections = ['home', 'about', 'services', 'gallery', 'contact'];
 
 export default function Navbar() {
-  const { lang, setLang, t } = useLanguage();
+  const { t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -71,23 +71,7 @@ export default function Navbar() {
                 {t(`nav.${id}`)}
               </button>
             ))}
-            <div className="flex items-center gap-1 ml-2 text-[13px] font-medium tracking-wide">
-              <button
-                onClick={() => setLang('en')}
-                className={`px-2 py-1 rounded transition-colors ${lang === 'en' ? 'text-jade-deep font-semibold' : 'text-soft-gray hover:text-charcoal'}`}
-                aria-label="Switch to English"
-              >
-                EN
-              </button>
-              <span className="text-sage">|</span>
-              <button
-                onClick={() => setLang('id')}
-                className={`px-2 py-1 rounded transition-colors ${lang === 'id' ? 'text-jade-deep font-semibold' : 'text-soft-gray hover:text-charcoal'}`}
-                aria-label="Ganti ke Bahasa Indonesia"
-              >
-                ID
-              </button>
-            </div>
+            {/* Language selector hidden */}
           </div>
 
           {/* Mobile Hamburger */}
@@ -127,26 +111,7 @@ export default function Navbar() {
                   {t(`nav.${id}`)}
                 </motion.button>
               ))}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="flex items-center gap-3 mt-4 text-lg font-medium"
-              >
-                <button
-                  onClick={() => setLang('en')}
-                  className={`px-3 py-1 rounded transition-colors ${lang === 'en' ? 'text-jade-deep font-semibold' : 'text-soft-gray'}`}
-                >
-                  EN
-                </button>
-                <span className="text-sage">|</span>
-                <button
-                  onClick={() => setLang('id')}
-                  className={`px-3 py-1 rounded transition-colors ${lang === 'id' ? 'text-jade-deep font-semibold' : 'text-soft-gray'}`}
-                >
-                  ID
-                </button>
-              </motion.div>
+              {/* Mobile Language selector hidden */}
             </div>
           </motion.div>
         )}

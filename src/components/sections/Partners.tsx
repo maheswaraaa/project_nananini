@@ -30,44 +30,25 @@ export default function Partners() {
         </div>
 
         {/* Partner Logo Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 place-items-center">
           {partners.map((partner, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] as const }}
-              className="bg-white/60 hover:bg-white border border-sage/20 rounded-sm p-6 md:p-8 flex items-center justify-center h-28 md:h-32 transition-all duration-300 grayscale hover:grayscale-0 group cursor-default"
+              transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] as const }}
+              className="w-full flex items-center justify-center p-4"
             >
-              <div className="text-center">
-                {i === 0 ? (
-                  /* Kraton special placeholder */
-                  <div>
-                    <svg viewBox="0 0 40 40" className="w-8 h-8 mx-auto mb-2 text-jade/40 group-hover:text-jade transition-colors duration-300" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <path d="M20 4 L4 16 L4 36 L36 36 L36 16 Z" />
-                      <rect x="16" y="24" width="8" height="12" />
-                      <rect x="8" y="20" width="6" height="8" />
-                      <rect x="26" y="20" width="6" height="8" />
-                      <path d="M12 4 L20 0 L28 4" />
-                    </svg>
-                    <p className="text-[10px] font-body font-medium text-jade-deep/60 group-hover:text-jade-deep uppercase tracking-wider leading-tight transition-colors duration-300">
-                      {partner.name}
-                    </p>
-                    <p className="text-[9px] font-body text-soft-gray/60 group-hover:text-soft-gray uppercase tracking-wider transition-colors duration-300">
-                      {partner.subtitle}
-                    </p>
-                  </div>
-                ) : (
-                  <div>
-                    <div className="w-10 h-10 mx-auto mb-2 rounded border border-dashed border-sage/40 flex items-center justify-center">
-                      <span className="text-[10px] font-body text-sage/60">Logo</span>
-                    </div>
-                    <p className="text-[10px] font-body font-medium text-soft-gray/60 uppercase tracking-wider leading-tight">
-                      {partner.subtitle}
-                    </p>
-                  </div>
-                )}
+              <div className="w-full h-24 md:h-32 flex items-center justify-center relative">
+                <img
+                  src={partner.image}
+                  alt={partner.name}
+                  className={`max-h-full max-w-full object-contain ${partner.className || ''}`}
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                  }}
+                />
               </div>
             </motion.div>
           ))}
